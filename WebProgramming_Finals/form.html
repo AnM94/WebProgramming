@@ -1,0 +1,171 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+	body, html {
+	  height: 100%;
+	  font-family: Arial, Helvetica, sans-serif;
+	}
+
+	* { 
+	  box-sizing: border-box; /*The box-sizing CSS property sets how the total width and height of an element is calculated.*/
+	  font-size: 16px;
+	}
+
+    .mySlides {
+       display: none;
+    }
+
+    .active {
+       background-color: #717171;
+    }
+
+    /* Fading animation */
+    .fade {
+       animation-name: fade;
+       animation-duration: 1.5s;
+    }
+
+    @keyframes fade {
+       from {opacity: .4} 
+       to {opacity: 1}
+    }
+
+    .img{
+       min-height: 100%;
+       width: 100%;
+       object-fit: fill;
+    }
+        
+	.logo_img{
+	    background-size: cover;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        outline: none;
+        height: 200px;
+        width: 220px;
+        left:  25px;
+        top: 20px;
+        position: fixed;
+        background-position: center;
+	}
+
+	.container {
+		position: fixed; 
+		color: white;
+		top: 0;
+		right: 0;
+		margin: 8px 10px; 
+		max-width: 300px;
+		padding: 15px; 
+		background-color: rgba(0,0,0,0.4); 
+    }
+
+	input[type=text], input[type=password] {
+		width: 100%;
+		padding: 11px; 
+		margin: 5px 0 22px 0;
+		border: none;
+		background: #f1f1f1; 
+	}
+
+	input[type=text]:focus, input[type=password]:focus{ 
+		background-color: #ddd;
+		outline: none;
+	}
+
+	.btn {
+		background-color: #BCA352;
+		color: white;
+		padding: 16px 20px;
+		border: none;
+		cursor: pointer; 
+		width: 100%;
+		opacity: 0.9; 
+	}
+
+	.btn:hover {
+		opacity: 1;
+    }
+</style>
+</head>
+<body>
+	<div>
+            <span class="mySlides fade">
+              <img src="hotel-index.jpg" class="img">
+            </span>    
+
+            <span class="mySlides fade">
+                <img src="hotel-index2.jpg" class="img">
+            </span>
+
+            <span class="mySlides fade">
+              <img src="hotel-index3.jpg" class="img">
+            </span>
+
+            <span class="mySlides fade">
+              <img src="hotel-index4.jpg" class="img">
+            </span>
+
+        </div>
+		<img class="logo_img" src='hotel_logo.png'>
+                
+	<form action="showFormData.jsp" method="post" class="container">
+		
+		<label for="name"><b>Όνομα</b></label>
+		<input type="text" name="Name" value="" pattern="[a-zA-zα-ωΑ-Ω]{2,}"><br>
+		
+		<label for="surname"><b>Επώνυμο</b></label>
+		<input type="text" name="SurName" value="" pattern="[a-zA-z]{2,}"><br>
+		
+		<label for="AFM"><b>ΑΦΜ</b></label>
+		<input type="text" name="Afm" value="" pattern="[0-9]{9,}"><br>
+		
+		<label for="Days_of_Visit"><b>Ημέρες Διαμονής</b></label>
+		<input type="text" name="Days" value=""  ><br>
+		
+		<label for="Romm_Category" ><b>Κατηγορία Δωματίου</b></label>
+		  <select name="choice">
+		  <option value="Mezoneta">Μεζονέτα</option> 
+		  <option value="Diplo">Διπλό</option>
+		  <option value="Monoklino">Μονόκλινο</option>
+		</select><br><br>
+		
+		<label for="Transport_Cost"><b>Κόστος Μεταφοράς</b></label>
+		<input type="text" name="transport" value=""><br>
+
+		<label for="Type_of_Food"><b>Είδος Διατροφής </b></label>
+		<select name="choice2">
+		  <option value="Plhrhs">Πλήρης</option>
+		  <option value="Hmidiatrofh">Ημιδιατροφή</option>
+		  <option value="Prwino">Πρωινό</option>
+		  <option value="Oxi">Όχι</option>
+		</select><br><br>
+
+		<input type="submit" value="Αποστολή" class="btn">
+	</form>
+                
+	<script>
+            let slideIndex = 0;
+            showSlides();
+
+            function showSlides() {
+              let i;
+              let slides = document.getElementsByClassName("mySlides");
+
+              for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+              }
+              slideIndex++;
+              if (slideIndex > slides.length) {slideIndex = 1;}    
+
+              slides[slideIndex-1].style.display = "block";  
+
+              setTimeout(showSlides, 2500); // Change image every 2.5 seconds
+            }
+        </script>
+</body>
+</html>
