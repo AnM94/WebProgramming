@@ -9,11 +9,11 @@
     <body>
 <%  
   String JDBC_DRIVER = "com.mysql.jdbc.Driver";//Δηλώνω τον mysql Driver
-  String db_URL = "jdbc:mysql://127.0.0.1:3306/hotel_db?characterEncoding=utf8";//Δηλώνω το URL της βάσης και την κωδικοποίηση  
+  String db_URL = "jdbc:mysql://127.0.0.1:3306/hotel_db?characterEncoding=utf8"; 
   String dbUSER = "Athena";
   String dbPASS = "Athena";
   Connection dbConn = null;
-  Statement dbStmt = null;  //Statement: μηχανή εκτέλεσης εντολών SQL
+  Statement dbStmt = null;  
    
   try {
     Class.forName(JDBC_DRIVER);
@@ -43,9 +43,9 @@
         
         ResultSet dbRs = dbStmt.executeQuery(sql);//Για τα SELECT γράφω executeQuery()
           
-          while(dbRs.next())//Αν βρέθηκε η εγγραφή (True:Υπάρχουν δεδομένα , False:Δεν υπάρχουν δεδομένα)
+          while(dbRs.next())
           {
-             int id = dbRs.getInt("id");//μέσα στα " " βάζω τις μεταβλητές έτσι όπως τις όρησα στο αρχείο .sql
+             int id = dbRs.getInt("id");
              String uname = dbRs.getString("uname");
              String usurname = dbRs.getString("usurname");
              int afm = dbRs.getInt("afm");
@@ -53,9 +53,7 @@
              String room_type = dbRs.getString("room_type");
              float transport_cost = dbRs.getFloat("transport_cost");
              String diet_type = dbRs.getString("diet_type");
-             
-             
-            //Για να ξέρει αυτά τα Attributes το 'table_For_Search.jsp'      
+                 
             session.setAttribute("id", id);   //Το 'table_For_Search.jsp' θα τα πάρει μέσω getAttribute  
             session.setAttribute("uname", uname);  
             session.setAttribute("usurname", usurname);  
@@ -65,16 +63,7 @@
             session.setAttribute("transport_cost", transport_cost);
             session.setAttribute("diet_type", diet_type); //Είδος Διατροφής
             
-             /*out.print("id : " + String.valueOf(id) + "<br>");//όπως όταν εμφανίζω τα values από μια φόρμα html
-             out.print("uname : " + uname + "<br>");
-             out.print("usurname : " + usurname +  "<br>");
-             out.print("afm : " + String.valueOf(afm) + "<br>");//String.valueOf(): μόνο για αριθμούς
-             out.print("days : " + String.valueOf(days) + "<br>");//String.valueOf(): μόνο για αριθμούς
-             out.print("room_type	: " + room_type  + "<br>");
-             out.print("transport_cost	: " + transport_cost  + "<br>");
-             out.print("diet_type	: " + diet_type  + "<br>");
-             out.print("================================<br>");    */
-          }
+                     }
         
        dbConn.close();  //Κλείνω την σύνδεση
     }
