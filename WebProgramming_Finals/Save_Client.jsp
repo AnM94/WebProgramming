@@ -9,7 +9,7 @@
     </head>
     <body>
      
- <%!void Save(){ %>         <%--     '<%!' επειδή ξεκινάω συνάρτηση       --%> 
+ <%!void Save(){ %>        
  <%
      
   String JDBC_DRIVER = "com.mysql.jdbc.Driver";//Δηλώνω τον mysql Driver
@@ -17,7 +17,7 @@
   String dbUSER = "Athena";
   String dbPASS = "Athena";
   Connection dbConn = null;
-  Statement dbStmt = null;  //Statement: μηχανή εκτέλεσης εντολών SQL
+  Statement dbStmt = null;  
    
   try {
     Class.forName(JDBC_DRIVER);
@@ -31,7 +31,7 @@
         sql="SELECT * FROM HOTEL_CLIENTS WHERE uname='" + session.getAttribute("uname") + "' AND usurname='"
                 + session.getAttribute("usurname") + "' AND afm='" + session.getAttribute("uAFM") + "'";
         ResultSet dbRs = dbStmt.executeQuery(sql);
-        if(!dbRs.next()){ //if entry does not exist already
+        if(!dbRs.next()){ 
             
             sql="Insert into HOTEL_CLIENTS (uname, usurname, afm, days, room_type, transport_cost, diet_type)"
                   + " values ('" + session.getAttribute("uname") + "', '" +  session.getAttribute("usurname") + "', " 
